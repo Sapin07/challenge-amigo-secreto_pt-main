@@ -1,5 +1,6 @@
 const friendList = document.querySelector('#listaAmigos');
 const iptFriends = document.querySelector('#amigo');
+const resultadoView = document.querySelector('#resultado');
 
 
 let friends = []; //lista dos participantes
@@ -31,4 +32,25 @@ function adicionarAmigo() {
     friends.push(friendName);
     updateList();
     iptFriends.value = "";
+}
+
+function generateRandomNum(limite){
+    // gera um numero aleatorio com base no numero dos participantes
+    return Math.floor(Math.random() * limite);
+}
+
+function sortearAmigo(){
+    const numParticipantes = friends.length;
+    if (numParticipantes == 0){
+        alert("Tente inserir mais participantes");
+        return;
+    }
+    
+    randomNum = generateRandomNum(numParticipantes);
+    const resultadoItem = resultadoView.appendChild(document.createElement("li"));
+    resultadoItem.innerHTML = `O amigo secreto sorteado é: ${friends[randomNum]}`;
+    
+
+    console.log(friends[randomNum]);
+    return friends[randomNum];
 }
